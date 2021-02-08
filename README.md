@@ -21,8 +21,6 @@
 <br />
 <br />
 
-<p align="center">
 ![Github stats](https://github-readme-stats.vercel.app/api?username=rinme&count_private=true&show_icons=true&include_all_commits=true)
-</p>
 
 ### Thanks for nice readme.md from "Flam3rboy"
