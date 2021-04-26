@@ -1,19 +1,11 @@
 <p align="center">
     <img style="border-radius: 100px" width="128" height="128" src="https://cdn.discordapp.com/avatars/427448982118334474/95d2499afd20a933c352fda2eae1c3e3.png?size=2048">
 </p>
-<h1 align="center">RINme</h1>
+<h1 align="center">Rinme</h1>
 
 ### Languages, Tools and Frameworks:
 
-<p>
-<img align="left" alt="HTML5" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
-<img align="left" alt="CSS3" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png" />
-<img align="left" alt="JavaScript" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png" />
-<img align="left" alt="Java" width="26px" src="https://icon-library.com/images/java-icon-images/java-icon-images-6.jpg" />
-
-<img align="left" alt="Node.js" width="26px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" />
-<img align="left" alt="Git" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png" />
-</p>
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=rinme&langs_count=8)](https://github.com/anuraghazra/github-readme-stats&theme=omni)
 
 
 <br />
@@ -21,6 +13,8 @@
 <br />
 <br />
 
-![Github stats](https://github-readme-stats.vercel.app/api?username=rinme&count_private=true&show_icons=true&include_all_commits=true)
+[![rinme's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=rinme&theme=omni)
+![Github stats](https://github-readme-stats.vercel.app/api?username=rinme&count_private=true&show_icons=true&include_all_commits=true&theme=omni)
+![rinme's GitHub stats](https://github-readme-stats.vercel.app/api?username=rinme&count_private=true&show_icons=true&include_all_commits=true&theme=omni)
 
 ### Thanks for nice readme.md from "Flam3rboy"
