@@ -1,5 +1,5 @@
 <p align="center">
-    <img style="border-radius: 100px" width="128" height="128" src="https://cdn.discordapp.com/avatars/427448982118334474/95d2499afd20a933c352fda2eae1c3e3.png?size=2048">
+    <img style="border-radius: 100px" width="128" height="128" src="https://cdn.discordapp.com/avatars/427448982118334474/80c5ede7951468c64ab369cb4302382a.webp?size=2048">
 </p>
 <h1 align="center">Rinme</h1>
 
