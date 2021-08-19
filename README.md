@@ -15,12 +15,3 @@
 <p></p>
 
 ![rinme's GitHub stats](https://github-readme-stats.vercel.app/api?username=rinme&count_private=true&show_icons=true&include_all_commits=true&theme=omni)
-
-
-
-
-
-
-
-
-### Still Thanks "Flam3rboy" for make me know this readme api
