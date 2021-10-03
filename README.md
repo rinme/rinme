@@ -1,5 +1,5 @@
 <h1 align="center">Rinme
-<img align="center" src="https://raw.githubusercontent.com/rinme/rinme/main/Rinme.png">
+<img align="center" src="https://raw.githubusercontent.com/rinme/rinme/main/Rinme.jpg">
 </h1>
 
 <a href="https://discord.com/users/427448982118334474"><img align="left" src="https://lanyard-profile-readme.vercel.app/api/427448982118334474?bg=23283d&borderRadius=8px&hideDiscrim=true"/></a>
