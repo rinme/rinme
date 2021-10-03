@@ -1,15 +1,9 @@
-<p align="center">
-    <img style="border-radius: 100px" width="128" height="128" src="https://rinme.github.io/img/logo.757b706b.png">
-</p>
 <h1 align="center">Rinme</h1>
 
-- [x] Yes
-- [x] Main in vue.js
-- [x] I just 15 yo ;-;
+<a href="https://discord.com/users/427448982118334474"><img align="left" src="https://lanyard-profile-readme.vercel.app/api/427448982118334474?bg=23283d&borderRadius=8px&hideDiscrim=true"/></a>
 
-### Languages, Tools and Frameworks:
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=rinme&langs_count=8&theme=omni)
+☁️ <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU">Never gonna give you up</a>
 
-![rinme's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=rinme&theme=omni)
+## 📋 Profile
 
-![rinme's GitHub stats](https://github-readme-stats.vercel.app/api?username=rinme&count_private=true&show_icons=true&include_all_commits=true&theme=omni)
+Hey there, I'm Rinme, a 15yo girl from Thai 🇹🇭 <br/><br/>having fun making game and website™️
