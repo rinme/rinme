@@ -8,5 +8,5 @@
 
 ## 📋 Profile
 
-Hey there, I'm Rinme, a 15yo girl from Thai 🇹🇭 <br/>having fun making game and website<br/>
+Hey there, I'm Rinme, from Thai 🇹🇭 <br/>having fun making game and website<br/>
 [![wakatime](https://wakatime.com/badge/user/5af90062-4877-4d1f-9105-1c0bbfe89b52.svg)](https://wakatime.com/@5af90062-4877-4d1f-9105-1c0bbfe89b52)
