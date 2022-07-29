@@ -2,7 +2,7 @@
 <img align="center" src="https://raw.githubusercontent.com/rinme/rinme/main/Rinme.jpg">
 </h1>
 
-<a href="https://discord.com/users/427448982118334474"><img align="left" src="https://lanyard-profile-readme.vercel.app/api/427448982118334474?bg=23283d&borderRadius=8px&hideDiscrim=true"/></a>
+<a href="https://discord.com/users/971531509620170832"><img align="left" src="https://lanyard.cnrad.dev/api/971531509620170832?bg=23283d&borderRadius=8px&hideDiscrim=true"/></a>
 
 ☁️ <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU">Never gonna give you up</a>
 
