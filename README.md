@@ -4,7 +4,7 @@
 
 <a href="https://discord.com/users/971531509620170832"><img align="left" src="https://lanyard.cnrad.dev/api/971531509620170832?bg=23283d&borderRadius=8px&hideDiscrim=true"/></a>
 
-☁️ <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU">Never gonna give you up</a>
+☁️ <a href="https://www.youtube.com/watch?v=xIOg_K6Z1fg">Never gonna give you up</a>
 
 ## 📋 Profile
 
