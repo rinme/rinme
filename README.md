@@ -1,8 +1,5 @@
 <h1 align="center">Rinme<br><br>
-    <img src="https://raw.githubusercontent.com/rinme/rinme/main/media/counter/0.gif">
-    <img src="https://raw.githubusercontent.com/rinme/rinme/main/media/counter/8.gif">
-    <img src="https://raw.githubusercontent.com/rinme/rinme/main/media/counter/2.gif">
-    <img src="https://raw.githubusercontent.com/rinme/rinme/main/media/counter/3.gif">
+    <img src="https://count.getloli.com/get/@:rinme" alt=":rinme" />
 
 </h1>
 
