@@ -12,31 +12,15 @@ You can visit my [Twitter](https://twitter.com/rinmeskt), [Portfolio](https://ri
 
 ### 👨‍💻 Languages
 
-<img src="media/img/languages/javascript-original.svg" width="75"/>
-<img src="media/img/languages/typescript-original.svg" width="75"/>
-<img src="media/img/languages/html5-original.svg" width="75"/>
-<img src="media/img/languages/python-original.svg" width="75"/>
-<img src="media/img/languages/bash-original.svg" width="75"/>
-<img src="media/img/languages/kotlin-original.svg" width="75"/>
-<img src="media/img/languages/java-original.svg" width="75"/>
-<img src="media/img/languages/lua-original.svg" width="75"/>
+<img src="media/img/languages/javascript-original.svg" width="75"/><img src="media/img/languages/typescript-original.svg" width="75"/><img src="media/img/languages/html5-original.svg" width="75"/><img src="media/img/languages/python-original.svg" width="75"/><img src="media/img/languages/bash-original.svg" width="75"/><img src="media/img/languages/kotlin-original.svg" width="75"/><img src="media/img/languages/java-original.svg" width="75"/><img src="media/img/languages/lua-original.svg" width="75"/>
 
 ### 📚 Libraries
 
-<img src="media/img/libs/discordjs-original.svg" width="75"/>
-<img src="media/img/libs/nextjs-original.svg" width="75"/>
-<img src="media/img/libs/pytorch-original.svg" width="75"/>
+<img src="media/img/libs/discordjs-original.svg" width="75"/><img src="media/img/libs/nextjs-original.svg" width="75"/><img src="media/img/libs/pytorch-original.svg" width="75"/>
 
 ### 📦 Programs
 
-<img src="media/img/programs/vscode-original.svg" width="75"/>
-<img src="media/img/programs/nodejs-original.svg" width="75"/>
-<img src="media/img/programs/yarn-original.svg" width="75"/>
-<img src="media/img/programs/premierepro-original.svg" width="75"/>
-<img src="media/img/programs/npm-original-wordmark.svg" width="75"/>
-<img src="media/img/programs/blender-original.svg" width="75"/>
-<img src="media/img/programs/gimp-original.svg" width="75"/>
-<img src="media/img/programs/unity-original.svg" width="75"/>
-<img src="media/img/arrow.png"/>
+<img src="media/img/programs/vscode-original.svg" width="75"/><img src="media/img/programs/nodejs-original.svg" width="75"/><img src="media/img/programs/yarn-original.svg" width="75"/>
+<img src="media/img/programs/premierepro-original.svg" width="75"/><img src="media/img/programs/npm-original-wordmark.svg" width="75"/><img src="media/img/programs/blender-original.svg" width="75"/><img src="media/img/programs/gimp-original.svg" width="75"/><img src="media/img/programs/unity-original.svg" width="75"/><img src="media/img/arrow.png"/>
 
 <div align="center"><img src="https://lanyard.cnrad.dev/api/971531509620170832?bg=23283d&borderRadius=8px&hideDiscrim=true"><br/><img src="https://count.getloli.com/get/@:rinme" alt=":rinme" /></div>
