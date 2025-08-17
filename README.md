@@ -2,7 +2,7 @@
 
 Hey there, I'm Rinme, living in **Thailand** 🇹🇭\
 I'm having fun writing and coding\
-I'm studying and do part-time job\
+I'm studying in KMUTNB\
 My hobby are coding and playing game\
 I have favorite VTuber; **[Minato Aqua](https://www.youtube.com/@MinatoAqua)**, **[Shirakami Fubuki](https://www.youtube.com/@ShirakamiFubuki)** and **[La+](https://www.youtube.com/@LaplusDarknesss)**\
 You can visit my [Twitter](https://twitter.com/rinmeskt), [Portfolio](https://rinme.xyz)\
