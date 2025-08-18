@@ -23,4 +23,4 @@ You can visit my [Twitter](https://twitter.com/rinmeskt), [Portfolio](https://ri
 <img src="media/img/programs/vscode-original.svg" width="75"/><img src="media/img/programs/nodejs-original.svg" width="75"/><img src="media/img/programs/yarn-original.svg" width="75"/>
 <img src="media/img/programs/premierepro-original.svg" width="75"/><img src="media/img/programs/npm-original-wordmark.svg" width="75"/><img src="media/img/programs/blender-original.svg" width="75"/><img src="media/img/programs/gimp-original.svg" width="75"/><img src="media/img/programs/unity-original.svg" width="75"/><img src="media/img/arrow.png"/>
 
-<div align="center"><img src="https://lanyard.cnrad.dev/api/971531509620170832?bg=23283d&borderRadius=8px&hideDiscrim=true"><br/><img src="https://count.getloli.com/get/@:rinme" alt=":rinme" /></div>
+<div align="center"><img src="https://lanyard.cnrad.dev/api/971531509620170832?bg=23283d&borderRadius=8px&hideDiscrim=true"><br/><img src="https://count.getloli.com/get/@:rinme?theme=booru-jaypee" alt=":rinme" /></div>
