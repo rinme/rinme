@@ -1,11 +1,11 @@
-# 👋 Hello
+# 👋 [Hello](http://s.rinme.cfd/1)
 
 Hey there, I'm Rinme, living in **Thailand** 🇹🇭\
 I'm having fun writing and coding\
 I'm studying in KMUTNB\
 My hobby are coding and playing game\
 I have favorite VTuber; **[Minato Aqua](https://www.youtube.com/@MinatoAqua)**, **[Shirakami Fubuki](https://www.youtube.com/@ShirakamiFubuki)** and **[La+](https://www.youtube.com/@LaplusDarknesss)**\
-You can visit my [Twitter](https://twitter.com/rinmeskt), [Portfolio](https://rinme.xyz)\
+You can visit my [Twitter](https://twitter.com/rinmeskt)\
 [![wakatime](https://wakatime.com/badge/user/5af90062-4877-4d1f-9105-1c0bbfe89b52.svg)](https://wakatime.com/@5af90062-4877-4d1f-9105-1c0bbfe89b52)
 
 ## 📋 Skills
