@@ -1,4 +1,4 @@
-# 👋 [Hello](http://s.rinme.cfd/1)
+# 👋 [Hello](http://s.rinme.me/1)
 
 Hey there, I'm Rinme, living in **Thailand** 🇹🇭\
 I'm having fun writing and coding\
