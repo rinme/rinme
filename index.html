@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundWave – Music for Everyone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: '#1DB954',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="dark:bg-[#121212] bg-gray-100 dark:text-white text-gray-900 font-sans min-h-screen flex flex-col">
+
+  <!-- ═══════════════════════════════════════════════════
+       TOP NAVBAR
+       ═══════════════════════════════════════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 dark:bg-black bg-white shadow-md px-4 py-3">
+    <div class="flex items-center justify-between max-w-screen-2xl mx-auto">
+
+      <!-- Logo -->
+      <a href="#/" class="flex items-center gap-2 font-bold text-xl text-brand shrink-0">
+        <span class="text-2xl">🎵</span>
+        <span class="hidden sm:inline">SoundWave</span>
+      </a>
+
+      <!-- Center: Home + Search -->
+      <div class="flex items-center gap-3 flex-1 max-w-xl mx-4">
+        <button onclick="location.hash='#/'" class="dark:bg-[#282828] bg-gray-200 rounded-full p-2 hover:scale-105" title="Home">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        </button>
+        <div class="relative flex-1">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input id="search-input" type="text" placeholder="What do you want to listen to?"
+            class="w-full pl-10 pr-4 py-2 rounded-full dark:bg-[#242424] bg-gray-200 dark:text-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm"
+          />
+        </div>
+      </div>
+
+      <!-- Right nav links (desktop) -->
+      <div class="hidden lg:flex items-center gap-4 text-sm font-semibold shrink-0">
+        <a href="#" class="dark:text-gray-300 text-gray-600 hover:text-brand">Premium</a>
+        <a href="#" class="dark:text-gray-300 text-gray-600 hover:text-brand">Support</a>
+        <a href="#" class="dark:text-gray-300 text-gray-600 hover:text-brand">Download</a>
+        <span class="dark:text-gray-600 text-gray-300">|</span>
+        <a href="#" class="dark:text-gray-300 text-gray-600 hover:text-brand">Install App</a>
+        <a href="#/signup" class="border border-gray-400 dark:border-gray-500 px-4 py-1.5 rounded-full hover:border-white hover:scale-105">Sign up</a>
+        <a href="#/login" class="bg-white text-black px-5 py-1.5 rounded-full font-bold hover:scale-105 hover:bg-gray-200">Log in</a>
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" class="dark:bg-[#282828] bg-gray-200 rounded-full p-2 hover:scale-110" title="Toggle theme">
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+
+      <!-- Mobile: theme + hamburger -->
+      <div class="flex lg:hidden items-center gap-2">
+        <button onclick="toggleTheme()" class="dark:bg-[#282828] bg-gray-200 rounded-full p-2">
+          <span class="theme-icon">☀️</span>
+        </button>
+        <button onclick="toggleMobileMenu()" class="dark:bg-[#282828] bg-gray-200 rounded-full p-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="lg:hidden overflow-hidden">
+      <div class="pt-3 pb-2 px-2 flex flex-col gap-2 text-sm font-semibold border-t dark:border-gray-800 border-gray-200 mt-3">
+        <a href="#/" class="py-2 px-3 rounded-lg hover:dark:bg-[#282828] hover:bg-gray-200">🏠 Home</a>
+        <a href="#" class="py-2 px-3 rounded-lg hover:dark:bg-[#282828] hover:bg-gray-200">💎 Premium</a>
+        <a href="#" class="py-2 px-3 rounded-lg hover:dark:bg-[#282828] hover:bg-gray-200">❓ Support</a>
+        <a href="#" class="py-2 px-3 rounded-lg hover:dark:bg-[#282828] hover:bg-gray-200">⬇️ Download</a>
+        <div class="border-t dark:border-gray-700 border-gray-300 my-1"></div>
+        <a href="#/signup" class="py-2 px-3 rounded-lg border dark:border-gray-500 border-gray-400 text-center">Sign up</a>
+        <a href="#/login" class="py-2 px-3 rounded-lg bg-white text-black text-center font-bold">Log in</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+       VIEW: MAIN LANDING PAGE
+       ═══════════════════════════════════════════════════ -->
+  <div id="view-main" class="view active flex flex-col flex-1 pt-[64px] pb-[90px]">
+    <div class="flex flex-1">
+
+      <!-- LEFT SIDEBAR -->
+      <aside id="sidebar" class="fixed left-0 top-[64px] bottom-[90px] w-64 dark:bg-black bg-white flex flex-col overflow-y-auto z-30 lg:block">
+
+        <!-- Your Library header -->
+        <div class="flex items-center justify-between px-4 pt-4 pb-2">
+          <button class="flex items-center gap-2 font-bold text-sm dark:text-gray-300 text-gray-700 hover:text-brand">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+            </svg>
+            Your Library
+          </button>
+          <button class="dark:bg-[#282828] bg-gray-100 rounded-full p-1.5 hover:bg-brand hover:text-black" title="Create playlist">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Search / filter -->
+        <div class="px-4 pb-3">
+          <div class="relative">
+            <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" placeholder="Search in Your Library"
+              class="w-full pl-8 pr-3 py-1.5 rounded-md dark:bg-[#242424] bg-gray-100 placeholder-gray-500 text-xs focus:outline-none focus:ring-1 focus:ring-brand"
+            />
+          </div>
+        </div>
+
+        <!-- Promo cards -->
+        <div class="px-3 space-y-1 flex-1">
+          <div class="dark:bg-[#242424] bg-gray-100 rounded-xl p-4 mb-3">
+            <p class="font-bold text-sm mb-1">Create your first playlist</p>
+            <p class="text-xs dark:text-gray-400 text-gray-500 mb-3">It's easy, we'll help you</p>
+            <button class="bg-white text-black text-xs font-bold px-4 py-1.5 rounded-full hover:scale-105">Create playlist</button>
+          </div>
+          <div class="dark:bg-[#242424] bg-gray-100 rounded-xl p-4">
+            <p class="font-bold text-sm mb-1">Let's find some podcasts to follow</p>
+            <p class="text-xs dark:text-gray-400 text-gray-500 mb-3">We'll keep you updated on new episodes</p>
+            <button class="bg-white text-black text-xs font-bold px-4 py-1.5 rounded-full hover:scale-105">Browse podcasts</button>
+          </div>
+        </div>
+
+        <!-- Sidebar footer -->
+        <div class="px-4 py-4 mt-auto">
+          <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs dark:text-gray-500 text-gray-400 mb-3">
+            <a href="#" class="hover:text-white">Legal</a>
+            <a href="#" class="hover:text-white">Privacy</a>
+            <a href="#" class="hover:text-white">Cookies</a>
+            <a href="#" class="hover:text-white">About Ads</a>
+            <a href="#" class="hover:text-white">Accessibility</a>
+          </div>
+          <select class="border dark:border-gray-600 border-gray-300 dark:bg-transparent bg-white text-xs px-3 py-1.5 rounded-full dark:text-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-brand">
+            <option>🌐 English</option>
+            <option>🇹🇭 ภาษาไทย</option>
+            <option>🇯🇵 日本語</option>
+            <option>🇰🇷 한국어</option>
+            <option>🇪🇸 Español</option>
+          </select>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 lg:ml-64 px-4 md:px-6 py-6 overflow-y-auto max-w-full">
+
+        <!-- Greeting -->
+        <div class="mb-6">
+          <h1 class="text-2xl font-bold">Good evening 👋</h1>
+        </div>
+
+        <!-- TRENDING SONGS -->
+        <section class="mb-10">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold">Trending Songs</h2>
+            <a href="#" class="text-xs font-bold dark:text-gray-400 text-gray-500 hover:text-brand hover:underline uppercase tracking-wider">Show all</a>
+          </div>
+          <div id="trending-scroll" class="flex gap-4 overflow-x-auto scroll-x pb-3">
+
+            <div class="song-card cursor-pointer shrink-0 w-40 dark:bg-[#181818] bg-white rounded-xl p-3 hover:dark:bg-[#282828] hover:bg-gray-100" onclick="playTrack(0)">
+              <div class="relative rounded-lg overflow-hidden mb-3">
+                <img src="https://picsum.photos/200?random=1" alt="ทั้งไป" class="w-full aspect-square object-cover"/>
+                <div class="play-overlay absolute bottom-2 right-2">
+                  <button class="bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="font-bold text-sm truncate">ทั้งไป</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500 truncate">Only Monday</p>
+            </div>
+
+            <div class="song-card cursor-pointer shrink-0 w-40 dark:bg-[#181818] bg-white rounded-xl p-3 hover:dark:bg-[#282828] hover:bg-gray-100" onclick="playTrack(1)">
+              <div class="relative rounded-lg overflow-hidden mb-3">
+                <img src="https://picsum.photos/200?random=2" alt="Rain Zone" class="w-full aspect-square object-cover"/>
+                <div class="play-overlay absolute bottom-2 right-2">
+                  <button class="bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="font-bold text-sm truncate">Rain Zone</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500 truncate">Maiyarap, Z9</p>
+            </div>
+
+            <div class="song-card cursor-pointer shrink-0 w-40 dark:bg-[#181818] bg-white rounded-xl p-3 hover:dark:bg-[#282828] hover:bg-gray-100" onclick="playTrack(2)">
+              <div class="relative rounded-lg overflow-hidden mb-3">
+                <img src="https://picsum.photos/200?random=3" alt="Risk It All" class="w-full aspect-square object-cover"/>
+                <div class="play-overlay absolute bottom-2 right-2">
+                  <button class="bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="font-bold text-sm truncate">Risk It All</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500 truncate">Bruno Mars</p>
+            </div>
+
+            <div class="song-card cursor-pointer shrink-0 w-40 dark:bg-[#181818] bg-white rounded-xl p-3 hover:dark:bg-[#282828] hover:bg-gray-100" onclick="playTrack(3)">
+              <div class="relative rounded-lg overflow-hidden mb-3">
+                <img src="https://picsum.photos/200?random=4" alt="เหนื่อยเกินไป" class="w-full aspect-square object-cover"/>
+                <div class="play-overlay absolute bottom-2 right-2">
+                  <button class="bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="font-bold text-sm truncate">เหนื่อยเกินไป</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500 truncate">LITTLE JOHN</p>
+            </div>
+
+            <div class="song-card cursor-pointer shrink-0 w-40 dark:bg-[#181818] bg-white rounded-xl p-3 hover:dark:bg-[#282828] hover:bg-gray-100" onclick="playTrack(4)">
+              <div class="relative rounded-lg overflow-hidden mb-3">
+                <img src="https://picsum.photos/200?random=5" alt="ขอให้เราทั้งคู่โชคดี" class="w-full aspect-square object-cover"/>
+                <div class="play-overlay absolute bottom-2 right-2">
+                  <button class="bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="font-bold text-sm truncate">ขอให้เราทั้งคู่โชคดี</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500 truncate">Tattoo Colour</p>
+            </div>
+
+            <div class="song-card cursor-pointer shrink-0 w-40 dark:bg-[#181818] bg-white rounded-xl p-3 hover:dark:bg-[#282828] hover:bg-gray-100" onclick="playTrack(5)">
+              <div class="relative rounded-lg overflow-hidden mb-3">
+                <img src="https://picsum.photos/200?random=6" alt="GO" class="w-full aspect-square object-cover"/>
+                <div class="play-overlay absolute bottom-2 right-2">
+                  <button class="bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="font-bold text-sm truncate">GO</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500 truncate">BLACKPINK</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- POPULAR ARTISTS -->
+        <section class="mb-10">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold">Popular Artists</h2>
+            <a href="#" class="text-xs font-bold dark:text-gray-400 text-gray-500 hover:text-brand hover:underline uppercase tracking-wider">Show all</a>
+          </div>
+          <div id="artists-scroll" class="flex gap-6 overflow-x-auto scroll-x pb-3">
+
+            <div class="artist-card cursor-pointer shrink-0 w-36 dark:bg-[#181818] bg-white rounded-xl p-3 text-center hover:dark:bg-[#282828] hover:bg-gray-100">
+              <div class="relative mx-auto w-24 h-24 mb-3">
+                <img src="https://picsum.photos/200?random=7" alt="Only Monday" class="w-24 h-24 rounded-full object-cover"/>
+                <button class="artist-play absolute bottom-0 right-0 bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="font-bold text-sm truncate">Only Monday</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500">Artist</p>
+            </div>
+
+            <div class="artist-card cursor-pointer shrink-0 w-36 dark:bg-[#181818] bg-white rounded-xl p-3 text-center hover:dark:bg-[#282828] hover:bg-gray-100">
+              <div class="relative mx-auto w-24 h-24 mb-3">
+                <img src="https://picsum.photos/200?random=8" alt="Maiyarap" class="w-24 h-24 rounded-full object-cover"/>
+                <button class="artist-play absolute bottom-0 right-0 bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="font-bold text-sm truncate">Maiyarap</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500">Artist</p>
+            </div>
+
+            <div class="artist-card cursor-pointer shrink-0 w-36 dark:bg-[#181818] bg-white rounded-xl p-3 text-center hover:dark:bg-[#282828] hover:bg-gray-100">
+              <div class="relative mx-auto w-24 h-24 mb-3">
+                <img src="https://picsum.photos/200?random=9" alt="Bruno Mars" class="w-24 h-24 rounded-full object-cover"/>
+                <button class="artist-play absolute bottom-0 right-0 bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="font-bold text-sm truncate">Bruno Mars</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500">Artist</p>
+            </div>
+
+            <div class="artist-card cursor-pointer shrink-0 w-36 dark:bg-[#181818] bg-white rounded-xl p-3 text-center hover:dark:bg-[#282828] hover:bg-gray-100">
+              <div class="relative mx-auto w-24 h-24 mb-3">
+                <img src="https://picsum.photos/200?random=10" alt="LITTLE JOHN" class="w-24 h-24 rounded-full object-cover"/>
+                <button class="artist-play absolute bottom-0 right-0 bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="font-bold text-sm truncate">LITTLE JOHN</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500">Artist</p>
+            </div>
+
+            <div class="artist-card cursor-pointer shrink-0 w-36 dark:bg-[#181818] bg-white rounded-xl p-3 text-center hover:dark:bg-[#282828] hover:bg-gray-100">
+              <div class="relative mx-auto w-24 h-24 mb-3">
+                <img src="https://picsum.photos/200?random=11" alt="Tattoo Colour" class="w-24 h-24 rounded-full object-cover"/>
+                <button class="artist-play absolute bottom-0 right-0 bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="font-bold text-sm truncate">Tattoo Colour</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500">Artist</p>
+            </div>
+
+            <div class="artist-card cursor-pointer shrink-0 w-36 dark:bg-[#181818] bg-white rounded-xl p-3 text-center hover:dark:bg-[#282828] hover:bg-gray-100">
+              <div class="relative mx-auto w-24 h-24 mb-3">
+                <img src="https://picsum.photos/200?random=12" alt="BLACKPINK" class="w-24 h-24 rounded-full object-cover"/>
+                <button class="artist-play absolute bottom-0 right-0 bg-brand text-black rounded-full p-2 shadow-lg hover:scale-110">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <p class="font-bold text-sm truncate">BLACKPINK</p>
+              <p class="text-xs dark:text-gray-400 text-gray-500">Artist</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- POPULAR SONGS LIST TABLE -->
+        <section class="mb-10">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold">Popular Songs</h2>
+            <a href="#" class="text-xs font-bold dark:text-gray-400 text-gray-500 hover:text-brand hover:underline uppercase tracking-wider">Show all</a>
+          </div>
+          <div class="dark:bg-[#181818] bg-white rounded-xl overflow-hidden">
+            <div class="grid grid-cols-[40px_1fr_1fr_80px] md:grid-cols-[40px_1fr_1fr_1fr_80px] gap-3 px-4 py-2 border-b dark:border-gray-800 border-gray-200 text-xs font-semibold dark:text-gray-400 text-gray-500 uppercase tracking-wider">
+              <span class="text-center">#</span>
+              <span>Title</span>
+              <span class="hidden md:block">Album</span>
+              <span class="hidden md:block"></span>
+              <span class="text-right">⏱</span>
+            </div>
+            <div id="song-table-body">
+              <!-- Rows injected by JS -->
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       BOTTOM MUSIC PLAYER BAR
+       ═══════════════════════════════════════════════════ -->
+  <div id="player-bar" class="fixed bottom-0 left-0 right-0 z-50 dark:bg-[#181818] bg-white border-t dark:border-gray-800 border-gray-200 px-4 py-3">
+    <div class="flex items-center justify-between max-w-screen-2xl mx-auto gap-4">
+
+      <!-- Left: current track info -->
+      <div class="flex items-center gap-3 w-48 md:w-56 shrink-0">
+        <img id="player-thumb" src="https://picsum.photos/200?random=1" alt="Now Playing"
+          class="w-12 h-12 rounded-md object-cover"/>
+        <div class="min-w-0">
+          <p id="player-title" class="font-semibold text-sm truncate">ทั้งไป</p>
+          <p id="player-artist" class="text-xs dark:text-gray-400 text-gray-500 truncate">Only Monday</p>
+        </div>
+        <button onclick="toggleHeart()" class="dark:text-gray-400 text-gray-400 hover:text-brand ml-1 hidden sm:block" title="Like">
+          <svg id="heart-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Center: controls + progress -->
+      <div class="flex flex-col items-center gap-1 flex-1 max-w-xl">
+        <div class="flex items-center gap-4">
+          <button class="dark:text-gray-400 text-gray-400 hover:dark:text-white hover:text-black" title="Shuffle">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+            </svg>
+          </button>
+          <button onclick="prevTrack()" class="dark:text-gray-300 text-gray-600 hover:dark:text-white hover:text-black" title="Previous">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+          </button>
+          <button onclick="togglePlay()"
+            class="bg-white dark:bg-white text-black rounded-full p-2 hover:scale-110 shadow-md" title="Play/Pause">
+            <svg id="play-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button onclick="nextTrack()" class="dark:text-gray-300 text-gray-600 hover:dark:text-white hover:text-black" title="Next">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+          </button>
+          <button class="dark:text-gray-400 text-gray-400 hover:dark:text-white hover:text-black" title="Repeat">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="flex items-center gap-2 w-full text-xs dark:text-gray-400 text-gray-500">
+          <span id="current-time">0:00</span>
+          <input id="progress-bar" type="range" min="0" max="100" value="0"
+            class="flex-1 accent-brand h-1 rounded-full cursor-pointer"
+            oninput="seekTrack(this.value)"/>
+          <span id="total-time">3:45</span>
+        </div>
+      </div>
+
+      <!-- Right: volume -->
+      <div class="hidden md:flex items-center gap-2 w-36 shrink-0 justify-end">
+        <svg class="w-4 h-4 dark:text-gray-400 text-gray-400 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+        <input type="range" min="0" max="100" value="70"
+          class="volume flex-1 accent-brand h-1 rounded-full cursor-pointer"
+          oninput="setVolume(this.value)"/>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       VIEW: LOGIN PAGE
+       ═══════════════════════════════════════════════════ -->
+  <div id="view-login" class="view flex-col flex-1 items-center justify-center px-4 py-12 pt-24">
+
+    <!-- Logo -->
+    <a href="#/" class="flex items-center gap-2 mb-8 group mx-auto w-fit">
+      <span class="text-4xl group-hover:scale-110 inline-block transition-transform">🎵</span>
+      <span class="text-2xl font-bold text-brand">SoundWave</span>
+    </a>
+
+    <!-- Card -->
+    <div class="w-full max-w-md dark:bg-[#242424] bg-white rounded-2xl shadow-2xl px-8 py-10 mx-auto">
+
+      <h1 class="text-3xl font-bold text-center mb-8">Log in to SoundWave</h1>
+
+      <!-- Social Login Buttons -->
+      <div class="space-y-3 mb-6">
+        <button class="social-btn w-full flex items-center justify-center gap-3 border dark:border-gray-600 border-gray-300
+          dark:bg-transparent bg-white rounded-full py-3 px-5 font-semibold text-sm
+          hover:dark:border-white hover:border-gray-900 transition-all duration-200">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+        <button class="social-btn w-full flex items-center justify-center gap-3 border dark:border-gray-600 border-gray-300
+          dark:bg-transparent bg-white rounded-full py-3 px-5 font-semibold text-sm
+          hover:dark:border-white hover:border-gray-900 transition-all duration-200">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073C24 5.406 18.627 0 12 0S0 5.406 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+          </svg>
+          Continue with Facebook
+        </button>
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 my-6">
+        <div class="flex-1 h-px dark:bg-gray-700 bg-gray-300"></div>
+        <span class="text-xs font-bold dark:text-gray-400 text-gray-500 tracking-widest">OR</span>
+        <div class="flex-1 h-px dark:bg-gray-700 bg-gray-300"></div>
+      </div>
+
+      <!-- Login Form -->
+      <form onsubmit="handleLogin(event)" novalidate class="space-y-4">
+        <div>
+          <label for="login-email" class="block text-sm font-semibold mb-1.5">Email or username</label>
+          <input id="login-email" type="text" placeholder="Email or username"
+            class="sw-input w-full px-4 py-3 rounded-md border dark:border-gray-600 border-gray-300
+              dark:bg-[#3e3e3e] bg-gray-50 dark:placeholder-gray-500 placeholder-gray-400
+              text-sm focus:outline-none focus:border-white dark:focus:border-white focus:border-brand transition-colors"
+          />
+          <p id="login-email-error" class="text-red-400 text-xs mt-1 hidden">Please enter your email or username.</p>
+        </div>
+        <div>
+          <label for="login-password" class="block text-sm font-semibold mb-1.5">Password</label>
+          <div class="relative">
+            <input id="login-password" type="password" placeholder="Password"
+              class="sw-input w-full px-4 py-3 pr-12 rounded-md border dark:border-gray-600 border-gray-300
+                dark:bg-[#3e3e3e] bg-gray-50 dark:placeholder-gray-500 placeholder-gray-400
+                text-sm focus:outline-none focus:border-white dark:focus:border-white focus:border-brand transition-colors"
+            />
+            <button type="button" onclick="togglePasswordVisibility('login-password', 'eye-icon-login')"
+              class="eye-btn absolute right-3 top-1/2 -translate-y-1/2 dark:text-gray-400 text-gray-500 hover:dark:text-white hover:text-black">
+              <svg id="eye-icon-login" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <p id="login-password-error" class="text-red-400 text-xs mt-1 hidden">Please enter your password.</p>
+        </div>
+        <button type="submit"
+          class="w-full bg-brand text-black font-bold py-3.5 rounded-full text-sm
+            hover:scale-[1.02] hover:brightness-110 active:scale-100 transition-all duration-200 mt-2">
+          Log In
+        </button>
+      </form>
+
+      <!-- Forgot Password -->
+      <div class="text-center mt-4">
+        <a href="#" class="text-sm dark:text-white text-gray-700 underline hover:text-brand transition-colors">
+          Forgot your password?
+        </a>
+      </div>
+
+      <div class="h-px dark:bg-gray-700 bg-gray-300 my-6"></div>
+
+      <!-- Sign Up Link -->
+      <p class="text-center text-sm dark:text-gray-400 text-gray-500">
+        Don't have an account?
+        <a href="#/signup" class="dark:text-white text-gray-800 font-bold underline hover:text-brand transition-colors">Sign up</a>
+      </p>
+
+    </div>
+
+    <!-- Footer note -->
+    <p class="mt-8 text-xs dark:text-gray-600 text-gray-400 text-center max-w-xs mx-auto">
+      This site is protected by reCAPTCHA and the Google
+      <a href="#" class="underline hover:text-brand">Privacy Policy</a> and
+      <a href="#" class="underline hover:text-brand">Terms of Service</a> apply.
+    </p>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       VIEW: SIGNUP PAGE
+       ═══════════════════════════════════════════════════ -->
+  <div id="view-signup" class="view flex-col flex-1 items-center justify-start px-4 py-12 pt-24">
+
+    <!-- Logo -->
+    <a href="#/" class="flex items-center gap-2 mb-8 group mx-auto w-fit">
+      <span class="text-4xl group-hover:scale-110 inline-block transition-transform">🎵</span>
+      <span class="text-2xl font-bold text-brand">SoundWave</span>
+    </a>
+
+    <!-- Card -->
+    <div class="w-full max-w-md dark:bg-[#242424] bg-white rounded-2xl shadow-2xl px-8 py-10 mb-10 mx-auto">
+
+      <h1 class="text-3xl font-bold text-center mb-2">Sign up for free</h1>
+      <p class="text-center dark:text-gray-400 text-gray-500 text-sm mb-8">Start listening to millions of songs today.</p>
+
+      <!-- Social Signup Buttons -->
+      <div class="space-y-3 mb-6">
+        <button class="social-btn w-full flex items-center justify-center gap-3 border dark:border-gray-600 border-gray-300
+          dark:bg-transparent bg-white rounded-full py-3 px-5 font-semibold text-sm
+          hover:dark:border-white hover:border-gray-900 transition-all duration-200">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+        <button class="social-btn w-full flex items-center justify-center gap-3 border dark:border-gray-600 border-gray-300
+          dark:bg-transparent bg-white rounded-full py-3 px-5 font-semibold text-sm
+          hover:dark:border-white hover:border-gray-900 transition-all duration-200">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073C24 5.406 18.627 0 12 0S0 5.406 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+          </svg>
+          Continue with Facebook
+        </button>
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 my-6">
+        <div class="flex-1 h-px dark:bg-gray-700 bg-gray-300"></div>
+        <span class="text-xs font-bold dark:text-gray-400 text-gray-500 tracking-widest">OR</span>
+        <div class="flex-1 h-px dark:bg-gray-700 bg-gray-300"></div>
+      </div>
+
+      <!-- Signup Form -->
+      <form onsubmit="handleSignup(event)" novalidate class="space-y-5">
+
+        <!-- Email -->
+        <div>
+          <label for="signup-email" class="block text-sm font-semibold mb-1.5">Email address</label>
+          <input id="signup-email" type="email" placeholder="name@example.com"
+            class="w-full px-4 py-3 rounded-md border dark:border-gray-600 border-gray-300
+              dark:bg-[#3e3e3e] bg-gray-50 dark:placeholder-gray-500 placeholder-gray-400
+              text-sm focus:outline-none focus:border-brand dark:focus:border-white transition-colors"
+            oninput="clearError('signup-email-error')"
+          />
+          <p id="signup-email-error" class="text-red-400 text-xs mt-1 hidden">Please enter a valid email address.</p>
+        </div>
+
+        <!-- Confirm Email -->
+        <div>
+          <label for="signup-confirm-email" class="block text-sm font-semibold mb-1.5">Confirm email address</label>
+          <input id="signup-confirm-email" type="email" placeholder="Confirm your email"
+            class="w-full px-4 py-3 rounded-md border dark:border-gray-600 border-gray-300
+              dark:bg-[#3e3e3e] bg-gray-50 dark:placeholder-gray-500 placeholder-gray-400
+              text-sm focus:outline-none focus:border-brand dark:focus:border-white transition-colors"
+            oninput="clearError('confirm-email-error')"
+          />
+          <p id="confirm-email-error" class="text-red-400 text-xs mt-1 hidden">Emails do not match.</p>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label for="signup-password" class="block text-sm font-semibold mb-1.5">Create a password</label>
+          <div class="relative">
+            <input id="signup-password" type="password" placeholder="Create a password"
+              class="w-full px-4 py-3 pr-12 rounded-md border dark:border-gray-600 border-gray-300
+                dark:bg-[#3e3e3e] bg-gray-50 dark:placeholder-gray-500 placeholder-gray-400
+                text-sm focus:outline-none focus:border-brand dark:focus:border-white transition-colors"
+              oninput="checkPasswordStrength(this.value); clearError('signup-password-error')"
+            />
+            <button type="button" onclick="togglePasswordVisibility('signup-password', 'eye-icon-signup')"
+              class="absolute right-3 top-1/2 -translate-y-1/2 dark:text-gray-400 text-gray-500 hover:dark:text-white hover:text-black">
+              <svg id="eye-icon-signup" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <p id="signup-password-error" class="text-red-400 text-xs mt-1 hidden">Password must be at least 8 characters.</p>
+          <div class="mt-2 space-y-1" id="strength-container">
+            <div class="flex gap-1.5">
+              <div class="strength-seg" id="seg-1"></div>
+              <div class="strength-seg" id="seg-2"></div>
+              <div class="strength-seg" id="seg-3"></div>
+            </div>
+            <p id="strength-label" class="text-xs dark:text-gray-500 text-gray-400">Enter a password</p>
+          </div>
+        </div>
+
+        <!-- Username -->
+        <div>
+          <label for="signup-username" class="block text-sm font-semibold mb-1.5">
+            Username
+            <span class="font-normal dark:text-gray-400 text-gray-500 ml-1 text-xs">(your profile name)</span>
+          </label>
+          <input id="signup-username" type="text" placeholder="Choose a username"
+            class="w-full px-4 py-3 rounded-md border dark:border-gray-600 border-gray-300
+              dark:bg-[#3e3e3e] bg-gray-50 dark:placeholder-gray-500 placeholder-gray-400
+              text-sm focus:outline-none focus:border-brand dark:focus:border-white transition-colors"
+            oninput="clearError('username-error')"
+          />
+          <p id="username-error" class="text-red-400 text-xs mt-1 hidden">Please choose a username.</p>
+        </div>
+
+        <!-- Date of Birth -->
+        <div>
+          <label class="block text-sm font-semibold mb-1">
+            Date of birth
+            <span class="font-normal dark:text-gray-400 text-gray-500 ml-1 text-xs">Why do we need this? <a href="#" class="underline hover:text-brand">Learn more</a></span>
+          </label>
+          <p class="text-xs dark:text-gray-500 text-gray-400 mb-2">Your date of birth will not be shared publicly.</p>
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label for="dob-day" class="text-xs dark:text-gray-400 text-gray-500 mb-1 block">Day</label>
+              <select id="dob-day" class="sw-select w-full px-3 py-2.5 rounded-md border dark:border-gray-600 border-gray-300
+                dark:bg-[#3e3e3e] bg-gray-50 text-sm focus:outline-none focus:border-brand dark:focus:border-white transition-colors pr-8">
+                <option value="">DD</option>
+              </select>
+            </div>
+            <div>
+              <label for="dob-month" class="text-xs dark:text-gray-400 text-gray-500 mb-1 block">Month</label>
+              <select id="dob-month" class="sw-select w-full px-3 py-2.5 rounded-md border dark:border-gray-600 border-gray-300
+                dark:bg-[#3e3e3e] bg-gray-50 text-sm focus:outline-none focus:border-brand dark:focus:border-white transition-colors pr-8">
+                <option value="">MM</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+            <div>
+              <label for="dob-year" class="text-xs dark:text-gray-400 text-gray-500 mb-1 block">Year</label>
+              <select id="dob-year" class="sw-select w-full px-3 py-2.5 rounded-md border dark:border-gray-600 border-gray-300
+                dark:bg-[#3e3e3e] bg-gray-50 text-sm focus:outline-none focus:border-brand dark:focus:border-white transition-colors pr-8">
+                <option value="">YYYY</option>
+              </select>
+            </div>
+          </div>
+          <p id="dob-error" class="text-red-400 text-xs mt-1 hidden">Please enter your date of birth.</p>
+        </div>
+
+        <!-- Gender -->
+        <div>
+          <label class="block text-sm font-semibold mb-3">Gender</label>
+          <p class="text-xs dark:text-gray-500 text-gray-400 mb-2">This helps us personalize recommendations. You can change this anytime.</p>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="gender-radio flex items-center gap-2 cursor-pointer p-3 rounded-lg border dark:border-gray-600 border-gray-300
+              hover:dark:border-gray-400 hover:border-gray-500 has-[:checked]:border-brand has-[:checked]:dark:border-brand transition-colors">
+              <input type="radio" name="gender" value="male" class="w-4 h-4" />
+              <span class="text-sm">Male</span>
+            </label>
+            <label class="gender-radio flex items-center gap-2 cursor-pointer p-3 rounded-lg border dark:border-gray-600 border-gray-300
+              hover:dark:border-gray-400 hover:border-gray-500 has-[:checked]:border-brand has-[:checked]:dark:border-brand transition-colors">
+              <input type="radio" name="gender" value="female" class="w-4 h-4" />
+              <span class="text-sm">Female</span>
+            </label>
+            <label class="gender-radio flex items-center gap-2 cursor-pointer p-3 rounded-lg border dark:border-gray-600 border-gray-300
+              hover:dark:border-gray-400 hover:border-gray-500 has-[:checked]:border-brand has-[:checked]:dark:border-brand transition-colors">
+              <input type="radio" name="gender" value="nonbinary" class="w-4 h-4" />
+              <span class="text-sm">Non-binary</span>
+            </label>
+            <label class="gender-radio flex items-center gap-2 cursor-pointer p-3 rounded-lg border dark:border-gray-600 border-gray-300
+              hover:dark:border-gray-400 hover:border-gray-500 has-[:checked]:border-brand has-[:checked]:dark:border-brand transition-colors">
+              <input type="radio" name="gender" value="other" class="w-4 h-4" />
+              <span class="text-sm">Other</span>
+            </label>
+          </div>
+          <p id="gender-error" class="text-red-400 text-xs mt-1 hidden">Please select your gender.</p>
+        </div>
+
+        <!-- Terms checkbox -->
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input id="terms-check" type="checkbox" class="mt-0.5 w-4 h-4 accent-brand shrink-0" />
+          <span class="text-xs dark:text-gray-400 text-gray-500 leading-relaxed">
+            I agree to the SoundWave
+            <a href="#" class="dark:text-white text-gray-800 underline hover:text-brand">Terms and Conditions of Use</a>
+            and acknowledge the
+            <a href="#" class="dark:text-white text-gray-800 underline hover:text-brand">Privacy Policy</a>.
+          </span>
+        </label>
+        <p id="terms-error" class="text-red-400 text-xs -mt-3 hidden">You must agree to the terms to continue.</p>
+
+        <!-- Create Account Button -->
+        <button type="submit"
+          class="w-full bg-brand text-black font-bold py-3.5 rounded-full text-sm
+            hover:scale-[1.02] hover:brightness-110 active:scale-100 transition-all duration-200 mt-2">
+          Create Account
+        </button>
+
+      </form>
+
+      <div class="h-px dark:bg-gray-700 bg-gray-300 my-6"></div>
+
+      <!-- Log In Link -->
+      <p class="text-center text-sm dark:text-gray-400 text-gray-500">
+        Already have an account?
+        <a href="#/login" class="dark:text-white text-gray-800 font-bold underline hover:text-brand transition-colors">Log in</a>
+      </p>
+
+    </div>
+  </div>
+
+  <!-- Application JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
