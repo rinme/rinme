@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 104" width="100%" height="104">
+  <style>
+    .lang-text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      fill: #24292f;
+    }
+    .lang-pct {
+      font-weight: 400;
+      fill: #57606a;
+    }
+    @media (prefers-color-scheme: dark) {
+      .lang-text {
+        fill: #e6edf3;
+      }
+      .lang-pct {
+        fill: #8b949e;
+      }
+    }
+  </style>
+  <clipPath id="bar-clip">
+    <rect x="0" y="0" width="650" height="10" rx="5" />
+  </clipPath>
+  <g clip-path="url(#bar-clip)">
+    <rect x="0.00" y="0" width="379.21" height="10" fill="#3178c6" />
+    <rect x="379.21" y="0" width="173.95" height="10" fill="#4F5D95" />
+    <rect x="553.16" y="0" width="33.02" height="10" fill="#e34c26" />
+    <rect x="586.18" y="0" width="20.05" height="10" fill="#00B4AB" />
+    <rect x="606.23" y="0" width="11.02" height="10" fill="#ff3e00" />
+    <rect x="617.25" y="0" width="10.03" height="10" fill="#3572A5" />
+    <rect x="627.28" y="0" width="22.72" height="10" fill="#8b949e" />
+  </g>
+  
+    <g transform="translate(5, 30)">
+      <circle cx="5" cy="-4" r="5" fill="#3178c6" />
+      <text x="16" y="0" class="lang-text">TypeScript <tspan class="lang-pct">58.3%</tspan></text>
+    </g>
+    <g transform="translate(215, 30)">
+      <circle cx="5" cy="-4" r="5" fill="#4F5D95" />
+      <text x="16" y="0" class="lang-text">PHP <tspan class="lang-pct">26.8%</tspan></text>
+    </g>
+    <g transform="translate(425, 30)">
+      <circle cx="5" cy="-4" r="5" fill="#e34c26" />
+      <text x="16" y="0" class="lang-text">HTML <tspan class="lang-pct">5.1%</tspan></text>
+    </g>
+    <g transform="translate(5, 52)">
+      <circle cx="5" cy="-4" r="5" fill="#00B4AB" />
+      <text x="16" y="0" class="lang-text">Dart <tspan class="lang-pct">3.1%</tspan></text>
+    </g>
+    <g transform="translate(215, 52)">
+      <circle cx="5" cy="-4" r="5" fill="#ff3e00" />
+      <text x="16" y="0" class="lang-text">Svelte <tspan class="lang-pct">1.7%</tspan></text>
+    </g>
+    <g transform="translate(425, 52)">
+      <circle cx="5" cy="-4" r="5" fill="#3572A5" />
+      <text x="16" y="0" class="lang-text">Python <tspan class="lang-pct">1.5%</tspan></text>
+    </g>
+    <g transform="translate(5, 74)">
+      <circle cx="5" cy="-4" r="5" fill="#8b949e" />
+      <text x="16" y="0" class="lang-text">Other <tspan class="lang-pct">3.5%</tspan></text>
+    </g>
+</svg>

@@ -48,15 +48,16 @@
 <!-- START_STACKS -->
 <p align="left">
   <b>Languages (Auto-updated from GitHub activity)</b><br/>
+  <img src="./media/languages-bar.svg" alt="Languages Breakdown" /><br/><br/>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=ts,php,html,dart,py,css,js,lua,rust,astro,bash,swift" alt="Languages" />
+    <img src="https://skillicons.dev/icons?i=ts,php,html,dart,svelte,py,css,js,lua,rust,astro,bash" alt="Languages" />
   </a>
 </p>
 
 <p align="left">
   <b>Libraries & Frameworks</b><br/>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=nodejs,svelte,tailwind,vite,nextjs,react,prisma,astro,discord,pytorch" alt="Libraries & Frameworks" />
+    <img src="https://skillicons.dev/icons?i=nodejs,tailwind,nextjs,react,prisma,svelte,vite,astro,discord,pytorch" alt="Libraries & Frameworks" />
   </a>
 </p>
 
@@ -78,21 +79,6 @@
   </a>
   <a href="https://github.com/rinme/reservation">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=rinme&repo=reservation&theme=radical&hide_border=true" alt="reservation repo" />
-  </a>
-</div>
-
----
-
-### GitHub & Coding Activity
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=rinme&show_icons=true&theme=radical&hide_border=true" alt="Rinme's GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rinme&layout=compact&theme=radical&hide_border=true" alt="Top Languages" />
-</div>
-
-<div align="center">
-  <a href="https://wakatime.com/@5af90062-4877-4d1f-9105-1c0bbfe89b52">
-    <img src="https://github-readme-stats.vercel.app/api/wakatime?username=rinme&theme=radical&hide_border=true" alt="WakaTime Stats" />
   </a>
 </div>
 

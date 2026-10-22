@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const README_PATH = path.resolve(__dirname, '../README.md');
+const MEDIA_DIR = path.resolve(__dirname, '../media');
+const SVG_PATH = path.resolve(MEDIA_DIR, 'languages-bar.svg');
 
 const USERNAME = process.env.GITHUB_ACTOR || process.env.GITHUB_REPOSITORY_OWNER || 'rinme';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -40,6 +42,35 @@ const LANGUAGE_MAP = {
   'Swift': 'swift',
   'Ruby': 'ruby',
   'Astro': 'astro',
+  'Vue': 'vue',
+  'Svelte': 'svelte',
+};
+
+const LANGUAGE_COLORS = {
+  'TypeScript': '#3178c6',
+  'JavaScript': '#f1e05a',
+  'Python': '#3572A5',
+  'HTML': '#e34c26',
+  'CSS': '#563d7c',
+  'Rust': '#dea584',
+  'Dart': '#00B4AB',
+  'Lua': '#000080',
+  'Luau': '#00A2FF',
+  'PHP': '#4F5D95',
+  'Kotlin': '#A97BFF',
+  'Java': '#b07219',
+  'C++': '#f34b7d',
+  'C': '#555555',
+  'C#': '#178600',
+  'Go': '#00ADD8',
+  'Shell': '#89e051',
+  'Bash': '#89e051',
+  'Swift': '#F05138',
+  'Ruby': '#701516',
+  'Astro': '#ff5a03',
+  'Vue': '#41b883',
+  'Svelte': '#ff3e00',
+  'Other': '#8b949e',
 };
 
 const FRAMEWORK_MAP = {
@@ -90,6 +121,102 @@ async function fetchJSON(url) {
   return res.json();
 }
 
+function generateLanguagesBarSvg(languageBytes) {
+  const sorted = Array.from(languageBytes.entries())
+    .filter(([_, bytes]) => bytes > 0)
+    .sort((a, b) => b[1] - a[1]);
+
+  const totalBytes = sorted.reduce((sum, [_, bytes]) => sum + bytes, 0);
+  if (totalBytes === 0) {
+    return '';
+  }
+
+  // Calculate percentages
+  let items = sorted.map(([lang, bytes]) => {
+    return {
+      name: lang,
+      bytes,
+      percentage: (bytes / totalBytes) * 100,
+      color: LANGUAGE_COLORS[lang] || '#8b949e',
+    };
+  });
+
+  // Keep top 6 languages and group the rest into 'Other' if more than 7 languages
+  if (items.length > 7) {
+    const top = items.slice(0, 6);
+    const rest = items.slice(6);
+    const otherBytes = rest.reduce((sum, item) => sum + item.bytes, 0);
+    const otherPct = (otherBytes / totalBytes) * 100;
+    top.push({
+      name: 'Other',
+      bytes: otherBytes,
+      percentage: otherPct,
+      color: LANGUAGE_COLORS['Other'],
+    });
+    items = top;
+  }
+
+  const svgWidth = 650;
+  const barHeight = 10;
+  const colWidth = 210;
+  const numCols = 3;
+  const numRows = Math.ceil(items.length / numCols);
+  const legendStartY = 30;
+  const rowHeight = 22;
+  const svgHeight = legendStartY + (numRows * rowHeight) + 8;
+
+  let currentX = 0;
+  const barSegments = items.map(item => {
+    const width = Math.max((item.percentage / 100) * svgWidth, 1.5);
+    const seg = `<rect x="${currentX.toFixed(2)}" y="0" width="${width.toFixed(2)}" height="${barHeight}" fill="${item.color}" />`;
+    currentX += width;
+    return seg;
+  }).join('\n    ');
+
+  const legendItems = items.map((item, idx) => {
+    const col = idx % numCols;
+    const row = Math.floor(idx / numCols);
+    const x = 5 + (col * colWidth);
+    const y = legendStartY + (row * rowHeight);
+    return `
+    <g transform="translate(${x}, ${y})">
+      <circle cx="5" cy="-4" r="5" fill="${item.color}" />
+      <text x="16" y="0" class="lang-text">${item.name} <tspan class="lang-pct">${item.percentage.toFixed(1)}%</tspan></text>
+    </g>`;
+  }).join('');
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgWidth} ${svgHeight}" width="100%" height="${svgHeight}">
+  <style>
+    .lang-text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      fill: #24292f;
+    }
+    .lang-pct {
+      font-weight: 400;
+      fill: #57606a;
+    }
+    @media (prefers-color-scheme: dark) {
+      .lang-text {
+        fill: #e6edf3;
+      }
+      .lang-pct {
+        fill: #8b949e;
+      }
+    }
+  </style>
+  <clipPath id="bar-clip">
+    <rect x="0" y="0" width="${svgWidth}" height="${barHeight}" rx="5" />
+  </clipPath>
+  <g clip-path="url(#bar-clip)">
+    ${barSegments}
+  </g>
+  ${legendItems}
+</svg>
+`;
+}
+
 async function main() {
   console.log(`Scanning GitHub activity for user: ${USERNAME}`);
 
@@ -121,11 +248,11 @@ async function main() {
     }
   }
 
-  // Detect frameworks from active repos package.json and requirements.txt
-  const detectedFrameworks = new Set(['nodejs']);
+  // Track framework and tool usage frequency
+  const frameworkCounts = new Map();
   const detectedTools = new Set(DEFAULT_TOOLS);
 
-  for (const repo of targetRepos.slice(0, 15)) {
+  for (const repo of targetRepos.slice(0, 20)) {
     // Check package.json
     try {
       const pkgUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/package.json`;
@@ -137,10 +264,16 @@ async function main() {
           ...(pkg.devDependencies || {})
         };
 
+        frameworkCounts.set('nodejs', (frameworkCounts.get('nodejs') || 0) + 1);
+
+        const seenInRepo = new Set();
         for (const [dep, icon] of Object.entries(FRAMEWORK_MAP)) {
           if (allDeps[dep]) {
-            detectedFrameworks.add(icon);
+            seenInRepo.add(icon);
           }
+        }
+        for (const icon of seenInRepo) {
+          frameworkCounts.set(icon, (frameworkCounts.get(icon) || 0) + 1);
         }
 
         if (allDeps['bun-types'] || allDeps['bun']) {
@@ -149,6 +282,27 @@ async function main() {
       }
     } catch (e) {
       // Ignore package.json read errors
+    }
+
+    // Check requirements.txt for Python frameworks
+    try {
+      const reqUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/requirements.txt`;
+      const reqRes = await fetch(reqUrl, { headers });
+      if (reqRes.ok) {
+        const reqText = await reqRes.text();
+        const lower = reqText.toLowerCase();
+        const seenInRepo = new Set();
+        for (const [dep, icon] of Object.entries(FRAMEWORK_MAP)) {
+          if (lower.includes(dep.toLowerCase())) {
+            seenInRepo.add(icon);
+          }
+        }
+        for (const icon of seenInRepo) {
+          frameworkCounts.set(icon, (frameworkCounts.get(icon) || 0) + 1);
+        }
+      }
+    } catch (e) {
+      // Ignore requirements.txt read errors
     }
 
     // Check Docker usage
@@ -163,7 +317,7 @@ async function main() {
     .map(([lang]) => LANGUAGE_MAP[lang])
     .filter(Boolean);
 
-  // De-duplicate while preserving order
+  // De-duplicate while preserving order (most used to least used)
   const languageIcons = Array.from(new Set(sortedLanguages));
 
   // Fallback defaults if API is rate-limited or empty
@@ -171,20 +325,34 @@ async function main() {
     languageIcons.push('ts', 'js', 'html', 'css', 'py', 'rust', 'dart', 'lua', 'php', 'bash');
   }
 
-  // Include core favorites if not already present
-  if (!detectedFrameworks.has('discord')) detectedFrameworks.add('discord');
-  if (!detectedFrameworks.has('pytorch')) detectedFrameworks.add('pytorch');
+  // Ensure favorites are present
+  if (!frameworkCounts.has('discord')) frameworkCounts.set('discord', 1);
+  if (!frameworkCounts.has('pytorch')) frameworkCounts.set('pytorch', 1);
 
-  const frameworkIcons = Array.from(detectedFrameworks);
+  // Sort frameworks by frequency descending (most used to least used)
+  const sortedFrameworks = Array.from(frameworkCounts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([icon]) => icon);
+
   const toolIcons = Array.from(detectedTools);
 
-  console.log('Detected Languages:', languageIcons);
-  console.log('Detected Frameworks:', frameworkIcons);
+  console.log('Language Byte Distribution (Bytes):', Object.fromEntries(languageBytes));
+  console.log('Detected Languages (Sorted):', languageIcons);
+  console.log('Detected Frameworks (Frequency Sorted):', sortedFrameworks);
   console.log('Tools:', toolIcons);
+
+  // Generate and save SVG language bar
+  fs.mkdirSync(MEDIA_DIR, { recursive: true });
+  const svgContent = generateLanguagesBarSvg(languageBytes);
+  if (svgContent) {
+    fs.writeFileSync(SVG_PATH, svgContent, 'utf-8');
+    console.log(`Saved language breakdown bar SVG to ${SVG_PATH}`);
+  }
 
   const skillsBlock = `<!-- START_STACKS -->
 <p align="left">
   <b>Languages (Auto-updated from GitHub activity)</b><br/>
+  <img src="./media/languages-bar.svg" alt="Languages Breakdown" /><br/><br/>
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=${languageIcons.slice(0, 12).join(',')}" alt="Languages" />
   </a>
@@ -193,7 +361,7 @@ async function main() {
 <p align="left">
   <b>Libraries & Frameworks</b><br/>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=${frameworkIcons.join(',')}" alt="Libraries & Frameworks" />
+    <img src="https://skillicons.dev/icons?i=${sortedFrameworks.join(',')}" alt="Libraries & Frameworks" />
   </a>
 </p>
 
@@ -211,7 +379,6 @@ async function main() {
   if (regex.test(readmeContent)) {
     readmeContent = readmeContent.replace(regex, skillsBlock);
   } else {
-    // Replace the previous static skills section
     const fallbackRegex = /### Skills & Tech Stack[\s\S]*?(?=---)/;
     if (fallbackRegex.test(readmeContent)) {
       readmeContent = readmeContent.replace(fallbackRegex, `### Skills & Tech Stack\n\n${skillsBlock}\n\n`);
