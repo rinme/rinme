@@ -56,7 +56,7 @@
 <p align="left">
   <b>Libraries & Frameworks</b><br/>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=nodejs,nextjs,react,tailwind,prisma,astro,discord,pytorch" alt="Libraries & Frameworks" />
+    <img src="https://skillicons.dev/icons?i=nodejs,svelte,tailwind,vite,nextjs,react,prisma,astro,discord,pytorch" alt="Libraries & Frameworks" />
   </a>
 </p>
 
