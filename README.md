@@ -50,7 +50,7 @@
   <b>Languages (Auto-updated from GitHub activity)</b><br/>
   <img src="./media/languages-bar.svg" alt="Languages Breakdown" /><br/><br/>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=ts,php,html,dart,svelte,py,css,js,lua,rust,astro,bash" alt="Languages" />
+    <img src="https://skillicons.dev/icons?i=ts,php,svelte,py,css,lua,js,html,bash" alt="Languages" />
   </a>
 </p>
 
