@@ -50,14 +50,14 @@
   <b>Languages (Auto-updated from GitHub activity)</b><br/>
   <img src="./media/languages-bar.svg" alt="Languages Breakdown" /><br/><br/>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=ts,php,svelte,py,css,lua,js,html,bash" alt="Languages" />
+    <img src="https://skillicons.dev/icons?i=ts,php,svelte,html,py,dart,go,rust,js,css,lua,astro" alt="Languages" />
   </a>
 </p>
 
 <p align="left">
   <b>Libraries & Frameworks</b><br/>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=nodejs,tailwind,nextjs,react,prisma,svelte,vite,astro,discord,pytorch" alt="Libraries & Frameworks" />
+    <img src="https://skillicons.dev/icons?i=nodejs,tailwind,svelte,vite,nextjs,react,prisma,threejs,astro,discord,pytorch" alt="Libraries & Frameworks" />
   </a>
 </p>
 
