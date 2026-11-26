@@ -23,13 +23,13 @@
     <rect x="0" y="0" width="650" height="10" rx="5" />
   </clipPath>
   <g clip-path="url(#bar-clip)">
-    <rect x="0.00" y="0" width="253.86" height="10" fill="#3178c6" />
-    <rect x="253.86" y="0" width="150.31" height="10" fill="#4F5D95" />
-    <rect x="404.17" y="0" width="133.40" height="10" fill="#ff3e00" />
-    <rect x="537.57" y="0" width="30.21" height="10" fill="#e34c26" />
-    <rect x="567.77" y="0" width="17.63" height="10" fill="#3572A5" />
-    <rect x="585.41" y="0" width="17.33" height="10" fill="#00B4AB" />
-    <rect x="602.73" y="0" width="47.27" height="10" fill="#8b949e" />
+    <rect x="0.00" y="0" width="253.85" height="10" fill="#3178c6" />
+    <rect x="253.85" y="0" width="150.30" height="10" fill="#4F5D95" />
+    <rect x="404.15" y="0" width="133.39" height="10" fill="#ff3e00" />
+    <rect x="537.54" y="0" width="30.21" height="10" fill="#e34c26" />
+    <rect x="567.74" y="0" width="17.63" height="10" fill="#3572A5" />
+    <rect x="585.38" y="0" width="17.33" height="10" fill="#00B4AB" />
+    <rect x="602.70" y="0" width="47.30" height="10" fill="#8b949e" />
   </g>
   
     <g transform="translate(5, 30)">
