@@ -67,6 +67,10 @@
     <img src="https://skillicons.dev/icons?i=vscode,yarn,npm,blender,unity,premiere,git,github,bun,docker" alt="Tools & Creative" />
   </a>
 </p>
+
+<p align="left">
+  <sub>Last updated: 2026-11-26 14:38:18 (UTC+7)</sub>
+</p>
 <!-- END_STACKS -->
 
 ---

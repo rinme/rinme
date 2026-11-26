@@ -349,6 +349,17 @@ async function main() {
     console.log(`Saved language breakdown bar SVG to ${SVG_PATH}`);
   }
 
+  const updatedAt = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Asia/Bangkok',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(new Date());
+
   const skillsBlock = `<!-- START_STACKS -->
 <p align="left">
   <b>Languages (Auto-updated from GitHub activity)</b><br/>
@@ -370,6 +381,10 @@ async function main() {
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=${toolIcons.join(',')}" alt="Tools & Creative" />
   </a>
+</p>
+
+<p align="left">
+  <sub>Last updated: ${updatedAt} (UTC+7)</sub>
 </p>
 <!-- END_STACKS -->`;
 
